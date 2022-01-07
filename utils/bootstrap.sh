@@ -20,9 +20,9 @@ function bootstrapFiles {
 
   # Download the kernel bzImage and the kernel modules (wget)
   {
-  wget https://github.com/MilkyDeveloper/cb-linux/releases/latest/download/bzImage -nc -O bzImage -q --show-progress
-  wget https://github.com/MilkyDeveloper/cb-linux/releases/latest/download/modules.tar.xz -nc -O modules.tar.xz -q --show-progress
-  wget https://raw.githubusercontent.com/MilkyDeveloper/cb-linux/main/kernel/kernel.flags -nc -O kernel.flags -q --show-progress
+  wget_if_needed bzImage https://github.com/MilkyDeveloper/cb-linux/releases/latest/download/bzImage -nc -O bzImage -q --show-progress
+  wget_if_needed modules.tar.xz https://github.com/MilkyDeveloper/cb-linux/releases/latest/download/modules.tar.xz -nc -O modules.tar.xz -q --show-progress
+  wget_if_needed kernel.flags https://raw.githubusercontent.com/MilkyDeveloper/cb-linux/main/kernel/kernel.flags -nc -O kernel.flags -q --show-progress
   } || true # Wget has the wrong exit status with no clobber
 
   # READ: Distro dependent step
@@ -38,7 +38,7 @@ function bootstrapFiles {
 
       # Download the Ubuntu rootfs if it doesn't exist
       DISTRO_ROOTFS="ubuntu-rootfs.tar.xz"
-      wget http://cloud-images.ubuntu.com/releases/${DISTRO_RELEASE}/release/ubuntu-${DISTRO_RELEASE}-server-cloudimg-amd64-root.tar.xz -O $DISTRO_ROOTFS -q --show-progress || {
+      wget_if_needed "$DISTRO_ROOTFS" http://cloud-images.ubuntu.com/releases/${DISTRO_RELEASE}/release/ubuntu-${DISTRO_RELEASE}-server-cloudimg-amd64-root.tar.xz -O $DISTRO_ROOTFS -q --show-progress || {
         echo "You have supplied an invalid Ubuntu version. It may not be released yet."; exit;
       }
       ;;
@@ -47,7 +47,7 @@ function bootstrapFiles {
       # Download the Arch Bootstrap rootfs if it doesn't exist
       DISTRO_ROOTFS="arch-rootfs.tar.gz"
       [[ ! -f $DISTRO_ROOTFS ]] && {
-      wget https://mirror.rackspace.com/archlinux/iso/2021.10.01/archlinux-bootstrap-2021.10.01-x86_64.tar.gz -O $DISTRO_ROOTFS -q --show-progress
+      wget_if_needed "$DISTRO_ROOTFS" https://mirror.rackspace.com/archlinux/iso/2021.10.01/archlinux-bootstrap-2021.10.01-x86_64.tar.gz -O $DISTRO_ROOTFS -q --show-progress
       }
       ;;
 
@@ -58,7 +58,7 @@ function bootstrapFiles {
       # TOOD: Implement versioning support in Fedora
       DISTRO_ROOTFS="fedora-rootfs.tar.xz"
       [[ ! -f $DISTRO_ROOTFS ]] && {
-      wget "https://kojipkgs.fedoraproject.org//packages/Fedora-Container-Base/35/20211127.0/images/Fedora-Container-Base-35-20211127.0.x86_64.tar.xz" -O $DISTRO_ROOTFS -q --show-progress
+      wget_if_needed "$DISTRO_ROOTFS" "https://kojipkgs.fedoraproject.org//packages/Fedora-Container-Base/35/20211127.0/images/Fedora-Container-Base-35-20211127.0.x86_64.tar.xz" -O $DISTRO_ROOTFS -q --show-progress
       }
       ;;
 

@@ -60,3 +60,13 @@ function unmountUSB {
 function runChrootCommand {
   sudo chroot $MNT /bin/sh -c "$1"
 }
+
+wget_if_needed () {
+    local f="$1"
+    shift
+    if [ -r "$f" ]; then
+        return
+    fi
+
+    wget "$@"
+}
