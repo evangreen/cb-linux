@@ -57,7 +57,7 @@ EOT
         ;;
 
       kde)
-        export DESKTOP_PACKAGE="apt install -y kde-standard"
+        export DESKTOP_PACKAGE="apt install -y kubuntu-desktop"
         ;;
 
       openbox)
