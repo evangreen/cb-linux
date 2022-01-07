@@ -79,11 +79,11 @@ EOT
     # instead of whatever the user choses.
     # We can fix this by removing the GNOME session and deleting the shell.
     if [[ $DESKTOP != "gnome" ]]; then
-      sudo rm ${MNT}/usr/share/xsessions/ubuntu.desktop || true
+      sudo rm -f ${MNT}/usr/share/xsessions/ubuntu.desktop || true
       runChrootCommand "apt remove gnome-shell -y; apt autoremove -y" || true
     fi
 
-    runChrootCommand "apt remove pulseaudio needrestart" || true
+    runChrootCommand "apt remove pulseaudio needrestart -y" || true
     printerr "Ignore libfprint-2-2 fprintd libpam-fprintd errors"
     syncStorage
     set -e
