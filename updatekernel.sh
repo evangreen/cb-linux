@@ -3,7 +3,7 @@
 source utils/functions.sh
 source utils/extract.sh
 
-export MNT=/mnt
+export MNT=/tmp/mnt
 
 [[ -n "$1" ]] && { export DIR=$1; }
 
@@ -14,7 +14,7 @@ read USB
 printq "Ok, using $USB to update the kernel and its modules"
 
 # Mount the USB
-sudo mount ${USB}2 /mnt
+sudo mount ${USB}2 "$MNT"
 
 cd ~/linux-build || { mkdir ~/linux-build; cd ~/linux-build; }
 
@@ -57,3 +57,5 @@ extractModules
 # Write Storage
 echo "Writing storage..."
 sync
+
+sudo umount "$MNT"

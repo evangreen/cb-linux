@@ -14,7 +14,7 @@ source utils/extract.sh   # Extract Rootfs
 export DESKTOP=$1
 export DISTRO=$2
 export DISTRO_VERSION=$3
-export MNT="/mnt"
+export MNT="/tmp/mnt"
 ORIGINAL_DIR=$(pwd)
 
 # Import a seperate postinstall function depending on the distro
