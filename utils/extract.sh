@@ -57,6 +57,10 @@ function extractModules {
 	sudo tar xvpf modules.tar.xz -C modules
 	sudo rm -rf ${MNT}/lib/modules/*
 	sudo cp -rv modules/lib/modules/* ${MNT}/lib/modules
+	if [ -d "modules/lib/firmware" ]; then
+		sudo cp -rv modules/lib/firmware/* "${MNT}/lib/firmware/"
+	fi
+
 	syncStorage
 	
 }
