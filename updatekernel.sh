@@ -8,7 +8,7 @@ export MNT=/tmp/mnt
 [[ -n "$1" ]] && { export DIR=$1; }
 
 # Ask user which USB Device they would like to use
-printq "Which USB Drive or SD Card would you like to use (e.g. /dev/sda)? All data on the drive will be wiped!"
+printq "Which USB Drive or SD Card would you like to use (e.g. /dev/sda)?"
 lsblk -o name,model,tran | grep --color=never "usb"
 read USB
 printq "Ok, using $USB to update the kernel and its modules"
@@ -33,7 +33,7 @@ wget_if_needed kernel.flags https://raw.githubusercontent.com/MilkyDeveloper/cb-
 }
 [[ -n "$VERSION" ]] && {
     wget_if_needed bzImage https://github.com/MilkyDeveloper/cb-linux/releases/latest/download/54bzImage -O bzImage -q --show-progress
-    wget_if_needed modules.tar.gz https://github.com/MilkyDeveloper/cb-linux/releases/latest/download/54modules.tar.xz -O modules.tar.xz -q --show-progress
+    wget_if_needed modules.tar.xz https://github.com/MilkyDeveloper/cb-linux/releases/latest/download/54modules.tar.xz -O modules.tar.xz -q --show-progress
 }
 
 # Sign the kernel
