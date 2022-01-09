@@ -70,6 +70,7 @@ sudo dd if=bzImage.signed of=${USB}1
 
 # Format the root partition as ext4 and mount it to /mnt
 yes | sudo mkfs.ext4 ${USB}2
+e2label "${USB}2" cloudimg-rootfs || echo "Ignoring inability to set label"
 syncStorage
 sudo umount $MNT || sudo umount -lf $MNT || true
 sudo rm -rf ${MNT}/*
