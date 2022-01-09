@@ -1,0 +1,309 @@
+diff --git a/chromeos/config/arm64/common.config b/chromeos/config/arm64/common.config
+index 4dba943bbdc041..986ff3e4209f6b 100644
+--- a/chromeos/config/arm64/common.config
++++ b/chromeos/config/arm64/common.config
+@@ -44,10 +44,13 @@ CONFIG_DEVFREQ_GOV_USERSPACE=y
+ CONFIG_DEVFREQ_THERMAL=y
+ CONFIG_DMADEVICES=y
+ CONFIG_DRM_DP_AUX_BACKLIGHT=y
++# CONFIG_DRM_FBDEV_EMULATION is not set
+ CONFIG_DRM_PANEL_EDP=y
+ CONFIG_DRM_PANEL_SIMPLE=y
+ CONFIG_ENERGY_MODEL=y
+ CONFIG_EXTCON_USBC_CROS_EC=y
++CONFIG_FB=y
++CONFIG_FRAMEBUFFER_CONSOLE_DETECT_PRIMARY=y
+ CONFIG_GPIO_SYSFS=y
+ CONFIG_HARDLOCKUP_DETECTOR_BUDDY_CPU=y
+ CONFIG_HID_RMI=m
+diff --git a/chromeos/config/armel/common.config b/chromeos/config/armel/common.config
+index edaaf6138f369a..582d286153b456 100644
+--- a/chromeos/config/armel/common.config
++++ b/chromeos/config/armel/common.config
+@@ -48,10 +48,13 @@ CONFIG_DMADEVICES=y
+ CONFIG_DRM_DP_AUX_BACKLIGHT=y
+ CONFIG_DRM_DW_HDMI_AHB_AUDIO=y
+ CONFIG_DRM_DW_HDMI_I2S_AUDIO=y
++# CONFIG_DRM_FBDEV_EMULATION is not set
+ CONFIG_DRM_PANEL_EDP=y
+ CONFIG_DRM_PANEL_SIMPLE=y
+ CONFIG_DRM_ROCKCHIP=y
+ CONFIG_DW_WATCHDOG=y
++CONFIG_FB=y
++CONFIG_FRAMEBUFFER_CONSOLE_DETECT_PRIMARY=y
+ CONFIG_GPIO_SYSFS=y
+ CONFIG_HARDLOCKUP_DETECTOR_BUDDY_CPU=y
+ CONFIG_HIGHMEM=y
+diff --git a/chromeos/config/base.config b/chromeos/config/base.config
+index 8de09a13f7f41a..b7a2bd48832324 100644
+--- a/chromeos/config/base.config
++++ b/chromeos/config/base.config
+@@ -89,7 +89,6 @@ CONFIG_DM_VERITY_CHROMEOS=y
+ CONFIG_DRM=y
+ CONFIG_DRM_DP_AUX_CHARDEV=y
+ CONFIG_DRM_EVDI=m
+-# CONFIG_DRM_FBDEV_EMULATION is not set
+ CONFIG_DRM_UDL=y
+ CONFIG_DRM_VGEM=y
+ CONFIG_ECRYPT_FS=y
+@@ -102,11 +101,9 @@ CONFIG_EXT4_FS_POSIX_ACL=y
+ CONFIG_EXT4_FS_SECURITY=y
+ CONFIG_FANOTIFY=y
+ CONFIG_FANOTIFY_ACCESS_PERMISSIONS=y
+-CONFIG_FB=y
+ CONFIG_FB_MODE_HELPERS=y
+ CONFIG_FORTIFY_SOURCE=y
+ CONFIG_FRAMEBUFFER_CONSOLE=y
+-CONFIG_FRAMEBUFFER_CONSOLE_DETECT_PRIMARY=y
+ CONFIG_FS_ENCRYPTION=y
+ CONFIG_FS_VERITY=y
+ CONFIG_FS_VERITY_BUILTIN_SIGNATURES=y
+diff --git a/chromeos/config/x86_64/chromeos-amd-stoneyridge.flavour.config b/chromeos/config/x86_64/chromeos-amd-stoneyridge.flavour.config
+index 4c7fe51c983a03..2fabdd120758ed 100644
+--- a/chromeos/config/x86_64/chromeos-amd-stoneyridge.flavour.config
++++ b/chromeos/config/x86_64/chromeos-amd-stoneyridge.flavour.config
+@@ -26,10 +26,14 @@ CONFIG_DRM_AMDGPU_USERPTR=y
+ CONFIG_DRM_AMD_ACP=y
+ CONFIG_DRM_AMD_DC_HDCP=y
+ CONFIG_DRM_CIRRUS_QEMU=y
++# CONFIG_DRM_FBDEV_EMULATION is not set
+ CONFIG_DRM_VIRTIO_GPU=y
+ # CONFIG_EARLY_PRINTK is not set
+ CONFIG_EDAC=y
++# CONFIG_EFIVAR_FS is not set
++CONFIG_FB=y
+ CONFIG_FIXED_PHY=y
++CONFIG_FRAMEBUFFER_CONSOLE_DETECT_PRIMARY=y
+ CONFIG_GPIO_LYNXPOINT=y
+ CONFIG_GPIO_SYSFS=y
+ CONFIG_HP_WMI=m
+@@ -56,6 +60,7 @@ CONFIG_RTW88=m
+ CONFIG_RTW88_8822CE=m
+ CONFIG_RTW88_DEBUG=y
+ CONFIG_RTW88_DEBUGFS=y
++CONFIG_SECURITY_CHROMIUMOS=y
+ CONFIG_SERIAL_DEV_BUS=y
+ CONFIG_SERIO_RAW=y
+ CONFIG_SKGE=m
+@@ -75,5 +80,6 @@ CONFIG_TCG_CR50_I2C=y
+ CONFIG_THERMAL_WRITABLE_TRIPS=y
+ CONFIG_TMPFS=y
+ CONFIG_TOUCHSCREEN_RM_TS=y
++# CONFIG_VGA_ARB is not set
+ CONFIG_X86_AMD_FREQ_SENSITIVITY=y
+ # CONFIG_X86_MCE_INTEL is not set
+diff --git a/chromeos/config/x86_64/chromeos-intel-denverton.flavour.config b/chromeos/config/x86_64/chromeos-intel-denverton.flavour.config
+index 0b301e05a275a0..91d36105e74116 100644
+--- a/chromeos/config/x86_64/chromeos-intel-denverton.flavour.config
++++ b/chromeos/config/x86_64/chromeos-intel-denverton.flavour.config
+@@ -5,10 +5,14 @@ CONFIG_B43=m
+ CONFIG_B43_SDIO=y
+ CONFIG_CPU_FREQ_GOV_POWERSAVE=y
+ CONFIG_DMADEVICES=y
++# CONFIG_DRM_FBDEV_EMULATION is not set
+ CONFIG_DRM_I915=y
+ CONFIG_DW_DMAC=m
+ CONFIG_EARLY_PRINTK_DBGP=y
++# CONFIG_EFIVAR_FS is not set
++CONFIG_FB=y
+ CONFIG_FIXED_PHY=y
++CONFIG_FRAMEBUFFER_CONSOLE_DETECT_PRIMARY=y
+ CONFIG_IGB=y
+ CONFIG_INTEL_IDLE=y
+ CONFIG_INTEL_IDMA64=y
+@@ -31,9 +35,11 @@ CONFIG_RTL8187=m
+ CONFIG_RTL8192CU=m
+ CONFIG_RTLLIB=m
+ # CONFIG_RTLWIFI_DEBUG is not set
++CONFIG_SECURITY_CHROMIUMOS=y
+ CONFIG_SKGE=m
+ CONFIG_SKY2=m
+ CONFIG_SPI_INTEL_SPI_PCI=m
++# CONFIG_VGA_ARB is not set
+ CONFIG_X86_INTEL_LPSS=y
+ # CONFIG_X86_MCE_AMD is not set
+ CONFIG_X86_PKG_TEMP_THERMAL=y
+diff --git a/chromeos/config/x86_64/chromeos-intel-pineview.flavour.config b/chromeos/config/x86_64/chromeos-intel-pineview.flavour.config
+index 0e7aa7e9305f1a..1443b82dc1558d 100644
+--- a/chromeos/config/x86_64/chromeos-intel-pineview.flavour.config
++++ b/chromeos/config/x86_64/chromeos-intel-pineview.flavour.config
+@@ -10,6 +10,7 @@ CONFIG_CPU_FREQ_GOV_ONDEMAND=y
+ CONFIG_CROS_EC_ISHTP=m
+ CONFIG_DEBUG_GPIO=y
+ CONFIG_DMADEVICES=y
++CONFIG_DM_MULTIPATH=y
+ CONFIG_DRM_CIRRUS_QEMU=m
+ CONFIG_DRM_I915=y
+ CONFIG_DRM_I915_FORCE_PROBE="*"
+@@ -18,6 +19,8 @@ CONFIG_DRM_VIRTIO_GPU=m
+ CONFIG_DW_DMAC=y
+ CONFIG_EARLY_PRINTK_DBGP=y
+ CONFIG_EEPROM_AT24=m
++CONFIG_EFIVAR_FS=y
++CONFIG_FB_VESA=y
+ CONFIG_GPIO_LYNXPOINT=y
+ CONFIG_GPIO_SYSFS=y
+ CONFIG_GPIO_TPS68470=y
+@@ -44,6 +47,7 @@ CONFIG_INTEL_PUNIT_IPC=y
+ CONFIG_INTEL_SCU_PLATFORM=y
+ CONFIG_INTEL_SOC_DTS_THERMAL=y
+ CONFIG_KEYBOARD_GPIO=y
++CONFIG_LSM="lockdown,yama,loadpin,safesetid,integrity,selinux,smack,tomoyo,apparmor,bpf"
+ CONFIG_MFD_INTEL_LPSS_ACPI=y
+ CONFIG_MFD_INTEL_LPSS_PCI=y
+ CONFIG_MFD_INTEL_PMT=y
+@@ -119,6 +123,7 @@ CONFIG_SND_SOC_SOF_TOPLEVEL=y
+ CONFIG_SND_SOC_TS3A227E=y
+ CONFIG_SND_SST_ATOM_HIFI2_PLATFORM_ACPI=m
+ CONFIG_SOUNDWIRE=m
++CONFIG_SQUASHFS_XZ=y
+ CONFIG_STAGING_MEDIA=y
+ CONFIG_SX9310=m
+ CONFIG_SX932X=m
+diff --git a/chromeos/config/x86_64/chromeos-x86_64-reven.flavour.config b/chromeos/config/x86_64/chromeos-x86_64-reven.flavour.config
+index 66a62bbb4ec3d8..93a90b46a41ce9 100644
+--- a/chromeos/config/x86_64/chromeos-x86_64-reven.flavour.config
++++ b/chromeos/config/x86_64/chromeos-x86_64-reven.flavour.config
+@@ -39,6 +39,7 @@ CONFIG_DELL_WMI_AIO=m
+ CONFIG_DELL_WMI_LED=m
+ CONFIG_DMADEVICES=y
+ CONFIG_DRM_AMDGPU=m
++# CONFIG_DRM_FBDEV_EMULATION is not set
+ CONFIG_DRM_GMA3600=y
+ CONFIG_DRM_GMA500=y
+ CONFIG_DRM_GMA600=y
+@@ -53,8 +54,11 @@ CONFIG_DW_DMAC=m
+ CONFIG_EARLY_PRINTK_DBGP=y
+ CONFIG_EEEPC_LAPTOP=m
+ CONFIG_EEEPC_WMI=m
++# CONFIG_EFIVAR_FS is not set
+ CONFIG_EFI_MIXED=y
+ CONFIG_EFI_STUB=y
++CONFIG_FB=y
++CONFIG_FRAMEBUFFER_CONSOLE_DETECT_PRIMARY=y
+ CONFIG_FUJITSU_LAPTOP=m
+ CONFIG_FUJITSU_TABLET=m
+ CONFIG_GPIO_LYNXPOINT=y
+@@ -185,6 +189,7 @@ CONFIG_RTW88_8822CE=m
+ CONFIG_RTW88_DEBUG=y
+ CONFIG_RTW88_DEBUGFS=y
+ CONFIG_SAMSUNG_LAPTOP=m
++CONFIG_SECURITY_CHROMIUMOS=y
+ CONFIG_SECURITY_LOCKDOWN_LSM=y
+ CONFIG_SECURITY_LOCKDOWN_LSM_EARLY=y
+ CONFIG_SENSORS_ACPI_POWER=m
+@@ -248,6 +253,7 @@ CONFIG_USB_HCD_BCMA=m
+ CONFIG_USB_HCD_SSB=m
+ CONFIG_USB_LEDS_TRIGGER_USBPORT=m
+ CONFIG_USB_R8A66597_HCD=m
++# CONFIG_VGA_ARB is not set
+ CONFIG_WIL6210=m
+ CONFIG_X86_INTEL_LPSS=y
+ CONFIG_X86_PKG_TEMP_THERMAL=y
+diff --git a/chromeos/config/x86_64/chromiumos-x86_64.flavour.config b/chromeos/config/x86_64/chromiumos-x86_64.flavour.config
+index 37311175397a9c..64fa5e9c8cf2a3 100644
+--- a/chromeos/config/x86_64/chromiumos-x86_64.flavour.config
++++ b/chromeos/config/x86_64/chromiumos-x86_64.flavour.config
+@@ -9,6 +9,7 @@ CONFIG_BATTERY_SBS=m
+ CONFIG_CPU_FREQ_GOV_POWERSAVE=y
+ CONFIG_DEBUG_GPIO=y
+ CONFIG_DMADEVICES=y
++# CONFIG_DRM_FBDEV_EMULATION is not set
+ CONFIG_DRM_GMA3600=y
+ CONFIG_DRM_GMA500=y
+ CONFIG_DRM_GMA600=y
+@@ -21,6 +22,9 @@ CONFIG_DRM_RADEON=m
+ CONFIG_DRM_VIRTIO_GPU=y
+ CONFIG_DW_DMAC=m
+ CONFIG_EARLY_PRINTK_DBGP=y
++# CONFIG_EFIVAR_FS is not set
++CONFIG_FB=y
++CONFIG_FRAMEBUFFER_CONSOLE_DETECT_PRIMARY=y
+ CONFIG_GPIO_LYNXPOINT=y
+ CONFIG_GPIO_SYSFS=y
+ CONFIG_HOTPLUG_PCI_ACPI=y
+@@ -60,6 +64,7 @@ CONFIG_RTW88_8822BE=m
+ CONFIG_RTW88_8822CE=m
+ CONFIG_RTW88_DEBUG=y
+ CONFIG_RTW88_DEBUGFS=y
++CONFIG_SECURITY_CHROMIUMOS=y
+ CONFIG_SKGE=m
+ CONFIG_SKY2=m
+ CONFIG_SND_HDA_CODEC_ANALOG=m
+@@ -93,6 +98,7 @@ CONFIG_SND_SOC_SSM4567=m
+ CONFIG_SND_SOC_TS3A227E=y
+ CONFIG_SX9310=m
+ CONFIG_TOUCHSCREEN_RM_TS=y
++# CONFIG_VGA_ARB is not set
+ CONFIG_X86_INTEL_LPSS=y
+ # CONFIG_X86_MCE_AMD is not set
+ CONFIG_X86_PKG_TEMP_THERMAL=y
+diff --git a/chromeos/config/x86_64/common.config b/chromeos/config/x86_64/common.config
+index fb528c51e12597..61e06940e428ba 100644
+--- a/chromeos/config/x86_64/common.config
++++ b/chromeos/config/x86_64/common.config
+@@ -43,7 +43,6 @@ CONFIG_E100=m
+ CONFIG_E1000=m
+ CONFIG_E1000E=m
+ CONFIG_EFI=y
+-# CONFIG_EFIVAR_FS is not set
+ CONFIG_EFI_VARS=y
+ CONFIG_FTRACE_SYSCALLS=y
+ CONFIG_GART_IOMMU=y
+@@ -127,7 +126,6 @@ CONFIG_SATA_MOBILE_LPM_POLICY=3
+ # CONFIG_SATA_PMP is not set
+ CONFIG_SCSI_CONSTANTS=y
+ CONFIG_SCSI_VIRTIO=y
+-CONFIG_SECURITY_CHROMIUMOS=y
+ CONFIG_SENSORS_CORETEMP=y
+ # CONFIG_SERIO_SERPORT is not set
+ CONFIG_SMP=y
+@@ -156,7 +154,6 @@ CONFIG_USB_STORAGE_REALTEK=y
+ CONFIG_USB_UHCI_HCD=y
+ CONFIG_USB_XHCI_HCD=y
+ # CONFIG_USELIB is not set
+-# CONFIG_VGA_ARB is not set
+ CONFIG_VIRTIO_BLK=m
+ CONFIG_VIRTIO_NET=m
+ CONFIG_VIRTIO_PCI=y
+diff --git a/fs/proc/base.c b/fs/proc/base.c
+index 19478535ee2e0a..982df5ed2ceae1 100644
+--- a/fs/proc/base.c
++++ b/fs/proc/base.c
+@@ -149,11 +149,7 @@ struct pid_entry {
+ 		NULL, &proc_pid_attr_operations,	\
+ 		{ .lsm = LSM })
+ 
+-#ifdef CONFIG_SECURITY_CHROMIUMOS_READONLY_PROC_SELF_MEM
+-# define PROC_PID_MEM_MODE S_IRUSR
+-#else
+ # define PROC_PID_MEM_MODE S_IRUSR|S_IWUSR
+-#endif
+ 
+ /*
+  * Count the number of hardlinks for the pid_entry table, excluding the .
+@@ -893,11 +889,7 @@ static ssize_t mem_read(struct file *file, char __user *buf,
+ static ssize_t mem_write(struct file *file, const char __user *buf,
+ 			 size_t count, loff_t *ppos)
+ {
+-#ifdef CONFIG_SECURITY_CHROMIUMOS_READONLY_PROC_SELF_MEM
+-	return -EACCES;
+-#else
+ 	return mem_rw(file, (char __user*)buf, count, ppos, 1);
+-#endif
+ }
+ 
+ loff_t mem_lseek(struct file *file, loff_t offset, int orig)
+diff --git a/security/chromiumos/Makefile b/security/chromiumos/Makefile
+index a59b4ec26e5d7c..54435c0f107829 100644
+--- a/security/chromiumos/Makefile
++++ b/security/chromiumos/Makefile
+@@ -1,5 +1,5 @@
+-obj-$(CONFIG_SECURITY_CHROMIUMOS) := chromiumos_lsm.o
++obj-$(CONFIG_SECURITY_CHROMIUMOS_NO) := chromiumos_lsm.o
+ 
+-chromiumos_lsm-y := inode_mark.o lsm.o securityfs.o utils.o
++chromiumos_lsm-n := inode_mark.o lsm.o securityfs.o utils.o
+ 
+-obj-$(CONFIG_ALT_SYSCALL_CHROMIUMOS) += alt-syscall.o
++obj-$(CONFIG_ALT_SYSCALL_CHROMIUMOS_NO) += alt-syscall.o
